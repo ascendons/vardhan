@@ -1,0 +1,174 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0b0a09;
+  --foreground: #ece7e1;
+  --ember: #ff7a1a;
+  --molten: #ffb347;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-ember: var(--ember);
+  --color-molten: var(--molten);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-bebas);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+/* Brushed-steel headline with a moving light sweep */
+.steel-text {
+  background: linear-gradient(
+    100deg,
+    #6b6b6b 0%,
+    #d9d9d9 18%,
+    #8a8a8a 32%,
+    #ffffff 48%,
+    #9a9a9a 62%,
+    #e6e6e6 80%,
+    #6b6b6b 100%
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: sheen 6s ease-in-out infinite;
+}
+
+@keyframes sheen {
+  0%,
+  100% {
+    background-position: 100% 0;
+  }
+  50% {
+    background-position: 0% 0;
+  }
+}
+
+/* Molten text accent */
+.molten-text {
+  background: linear-gradient(90deg, #ff5e00, #ffb347, #fff1c1, #ffb347, #ff5e00);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: flow 4s linear infinite;
+}
+
+@keyframes flow {
+  to {
+    background-position: 200% 0;
+  }
+}
+
+/* Furnace glow at the bottom of the screen */
+.furnace-glow {
+  background: radial-gradient(
+    ellipse 60% 45% at 50% 100%,
+    rgba(255, 110, 20, 0.35),
+    rgba(255, 70, 0, 0.12) 45%,
+    transparent 75%
+  );
+  animation: breathe 5s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.75;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Subtle metal grid texture */
+.grid-texture {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+}
+
+/* Rising sparks */
+.spark {
+  position: absolute;
+  bottom: -10px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, #fff3c4 0%, #ffb347 40%, #ff5e00 100%);
+  box-shadow: 0 0 6px 2px rgba(255, 140, 40, 0.8);
+  opacity: 0;
+  animation-name: rise;
+  animation-timing-function: ease-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes rise {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--drift), -85vh) scale(0.2);
+    opacity: 0;
+  }
+}
+
+/* Heat progress bar */
+.heat-bar {
+  background: linear-gradient(90deg, #7a1c00, #ff5e00, #ffb347, #fff1c1);
+  box-shadow: 0 0 18px rgba(255, 120, 30, 0.7);
+  animation: heat 2.6s ease-in-out infinite alternate;
+}
+
+@keyframes heat {
+  from {
+    filter: brightness(0.85);
+  }
+  to {
+    filter: brightness(1.25);
+  }
+}
+
+.fade-up {
+  opacity: 0;
+  animation: fadeUp 1s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .steel-text,
+  .molten-text,
+  .furnace-glow,
+  .heat-bar,
+  .spark {
+    animation: none;
+  }
+  .spark {
+    display: none;
+  }
+  .fade-up {
+    animation: none;
+    opacity: 1;
+  }
+}
