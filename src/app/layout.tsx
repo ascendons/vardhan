@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, Inter } from "next/font/google";
 import "./globals.css";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
+import { WhatsAppFab } from "@/components/WhatsAppFab";
+import { site } from "@/lib/site";
 
 const display = Bebas_Neue({
   variable: "--font-bebas",
@@ -14,18 +18,24 @@ const sans = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Vardhan Metals — Forging Something Extraordinary",
+  metadataBase: new URL(site.domain),
+  title: {
+    default: "Vardhan Metals | Electrical & E-Waste Scrap Rates Today",
+    template: "%s | Vardhan Metals",
+  },
   description:
-    "Vardhan Metals is forging a new digital home. Our website is under construction — something strong is on its way.",
+    "Today's scrap rates for copper wire, cables, motors, transformers, batteries, PCBs, computers and ACs. Vardhan Metals buys electrical & electronic scrap with honest digital weighing and free pickup.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="en"
-      className={`${display.variable} ${sans.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en" className={`${display.variable} ${sans.variable} antialiased`}>
+      <body className="flex min-h-screen flex-col">
+        <Header />
+        <main className="flex-1">{children}</main>
+        <Footer />
+        <WhatsAppFab />
+      </body>
     </html>
   );
 }

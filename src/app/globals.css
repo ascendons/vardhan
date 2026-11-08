@@ -1,174 +1,132 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0b0a09;
-  --foreground: #ece7e1;
-  --ember: #ff7a1a;
+  --ink: #141210;
+  --ink-2: #1e1b18;
+  --paper: #f5f1ea;
+  --card: #fffdf9;
+  --line: #e4ddd1;
+  --muted: #6f675d;
+  --copper: #b8561f;
+  --copper-bright: #e2793a;
   --molten: #ffb347;
+  --up: #1f8a4c;
+  --down: #c2412d;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-ember: var(--ember);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-paper: var(--paper);
+  --color-card: var(--card);
+  --color-line: var(--line);
+  --color-muted: var(--muted);
+  --color-copper: var(--copper);
+  --color-copper-bright: var(--copper-bright);
   --color-molten: var(--molten);
+  --color-up: var(--up);
+  --color-down: var(--down);
   --font-sans: var(--font-inter);
   --font-display: var(--font-bebas);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--paper);
+  color: var(--ink);
   font-family: var(--font-inter), system-ui, sans-serif;
 }
 
-/* Brushed-steel headline with a moving light sweep */
-.steel-text {
-  background: linear-gradient(
-    100deg,
-    #6b6b6b 0%,
-    #d9d9d9 18%,
-    #8a8a8a 32%,
-    #ffffff 48%,
-    #9a9a9a 62%,
-    #e6e6e6 80%,
-    #6b6b6b 100%
-  );
-  background-size: 250% 100%;
+.num {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Copper text accent */
+.copper-text {
+  background: linear-gradient(95deg, #c2601f, #ffb067 45%, #f6d2a8 55%, #d9732f);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  animation: sheen 6s ease-in-out infinite;
 }
 
-@keyframes sheen {
-  0%,
-  100% {
-    background-position: 100% 0;
-  }
-  50% {
-    background-position: 0% 0;
-  }
+/* Hero background: subtle circuit grid + copper glow */
+.hero-bg {
+  background:
+    radial-gradient(ellipse 55% 60% at 85% 20%, rgba(226, 121, 58, 0.22), transparent 70%),
+    radial-gradient(ellipse 40% 50% at 0% 100%, rgba(255, 179, 71, 0.1), transparent 70%),
+    var(--ink);
 }
 
-/* Molten text accent */
-.molten-text {
-  background: linear-gradient(90deg, #ff5e00, #ffb347, #fff1c1, #ffb347, #ff5e00);
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: flow 4s linear infinite;
-}
-
-@keyframes flow {
-  to {
-    background-position: 200% 0;
-  }
-}
-
-/* Furnace glow at the bottom of the screen */
-.furnace-glow {
-  background: radial-gradient(
-    ellipse 60% 45% at 50% 100%,
-    rgba(255, 110, 20, 0.35),
-    rgba(255, 70, 0, 0.12) 45%,
-    transparent 75%
-  );
-  animation: breathe 5s ease-in-out infinite;
-}
-
-@keyframes breathe {
-  0%,
-  100% {
-    opacity: 0.75;
-  }
-  50% {
-    opacity: 1;
-  }
-}
-
-/* Subtle metal grid texture */
-.grid-texture {
+.circuit {
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-  background-size: 56px 56px;
-  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: linear-gradient(180deg, black, transparent 90%);
 }
 
-/* Rising sparks */
-.spark {
-  position: absolute;
-  bottom: -10px;
-  border-radius: 9999px;
-  background: radial-gradient(circle, #fff3c4 0%, #ffb347 40%, #ff5e00 100%);
-  box-shadow: 0 0 6px 2px rgba(255, 140, 40, 0.8);
-  opacity: 0;
-  animation-name: rise;
-  animation-timing-function: ease-out;
-  animation-iteration-count: infinite;
+/* Backdrop for category illustrations */
+.art-tile {
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 40%, rgba(226, 121, 58, 0.22), transparent 70%),
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px) 0 0 / 20px 20px,
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px) 0 0 / 20px 20px,
+    linear-gradient(160deg, #2a221c, #141110);
 }
 
-@keyframes rise {
-  0% {
-    transform: translate(0, 0) scale(1);
-    opacity: 0;
+/* Rate ticker */
+.ticker-track {
+  animation: ticker 60s linear infinite;
+}
+.ticker:hover .ticker-track {
+  animation-play-state: paused;
+}
+@keyframes ticker {
+  to {
+    transform: translateX(-50%);
   }
-  10% {
-    opacity: 1;
+}
+
+/* Live pulse dot */
+.pulse-dot {
+  box-shadow: 0 0 0 0 rgba(31, 138, 76, 0.6);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  70% {
+    box-shadow: 0 0 0 8px rgba(31, 138, 76, 0);
   }
   100% {
-    transform: translate(var(--drift), -85vh) scale(0.2);
-    opacity: 0;
+    box-shadow: 0 0 0 0 rgba(31, 138, 76, 0);
   }
 }
 
-/* Heat progress bar */
-.heat-bar {
-  background: linear-gradient(90deg, #7a1c00, #ff5e00, #ffb347, #fff1c1);
-  box-shadow: 0 0 18px rgba(255, 120, 30, 0.7);
-  animation: heat 2.6s ease-in-out infinite alternate;
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+details[open] .faq-plus {
+  transform: rotate(45deg);
 }
 
-@keyframes heat {
-  from {
-    filter: brightness(0.85);
-  }
-  to {
-    filter: brightness(1.25);
-  }
+.no-scrollbar {
+  scrollbar-width: none;
 }
-
-.fade-up {
-  opacity: 0;
-  animation: fadeUp 1s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
-}
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .steel-text,
-  .molten-text,
-  .furnace-glow,
-  .heat-bar,
-  .spark {
-    animation: none;
+  html {
+    scroll-behavior: auto;
   }
-  .spark {
-    display: none;
-  }
-  .fade-up {
+  .ticker-track,
+  .pulse-dot {
     animation: none;
-    opacity: 1;
   }
 }
