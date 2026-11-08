@@ -117,6 +117,7 @@ export const cities: City[] = [
   { slug: "pune", name: "Pune", factor: 0.985 },
   { slug: "nashik", name: "Nashik", factor: 0.975 },
   { slug: "ahmedabad", name: "Ahmedabad", factor: 0.99 },
+  { slug: "vadodara", name: "Vadodara", factor: 0.985 },
   { slug: "surat", name: "Surat", factor: 0.985 },
   { slug: "delhi", name: "Delhi NCR", factor: 1.005 },
   { slug: "bengaluru", name: "Bengaluru", factor: 0.99 },
