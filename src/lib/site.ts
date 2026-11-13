@@ -2,9 +2,9 @@
 // the phone / WhatsApp numbers below are placeholders.
 export const site = {
   name: "Vardhan Metals",
-  tagline: "Electrical & Electronic Scrap Buyers",
-  phoneDisplay: "+91 90000 00000",
-  phoneHref: "tel:+919000000000",
+  tagline: "Forging Something Extraordinary",
+  phoneDisplay: "+91 81608 07490",
+  phoneHref: "tel:+918160807490",
   whatsapp: "919000000000", // digits only, with country code
   email: "vardhanmetals@gmail.com",
   address: "302, Priyanka Arcade, Op. Road, Bh. Banker's Heart Institute, Vadodara - 390020",

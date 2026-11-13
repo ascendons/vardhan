@@ -64,7 +64,7 @@ export default function Home() {
         <div className="relative grid w-full items-center gap-12 px-4 py-14 sm:px-6 lg:px-10 2xl:px-16 lg:grid-cols-[1.1fr_1fr] lg:py-20">
           <div>
             <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium uppercase tracking-[0.2em] text-molten">
-              <BoltIcon className="h-3.5 w-3.5" /> Electrical &amp; Electronic Scrap Buyers
+              <BoltIcon className="h-3.5 w-3.5" /> {site.tagline}
             </p>
             <h1 className="mt-5 font-display text-6xl leading-[0.9] tracking-wide sm:text-7xl lg:text-8xl">
               Turn old wires &amp; <span className="copper-text">e-waste</span> into cash
